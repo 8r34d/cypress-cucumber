@@ -1,0 +1,6 @@
+{
+  "baseUrl": "https://limebread.co.uk",
+  "env": {
+    "greeting": "gcp lime"
+  }
+}
