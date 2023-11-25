@@ -1,7 +1,7 @@
 import { When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
 When("I visit duckduckgo.com", () => {
-  cy.visit("/");
+  cy.visit("https://duckduckgo.com/");
 });
 
 Then("I should see a search bar", () => {
@@ -13,4 +13,6 @@ Then("I should see a search bar", () => {
     );
 
   assert.deepEqual({}, {});
+
+  cy.dataCy("greeting").should("not.exist");
 });
