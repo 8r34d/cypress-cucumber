@@ -1,6 +1,8 @@
 {
-  "baseUrl": "https://limebread.co.uk",
+  "baseUrl": "https://cloud.google.com/",
   "env": {
-    "greeting": "gcp lime"
+    "greeting": "gcp lime",
+    "host": "gcp",
+    "environment": "lime"
   }
 }

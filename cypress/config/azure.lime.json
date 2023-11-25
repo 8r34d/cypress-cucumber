@@ -1,6 +1,8 @@
 {
-  "baseUrl": "https://limebread.co.uk",
+  "baseUrl": "https://azure.microsoft.com/en-gb/",
   "env": {
-    "greeting": "azure lime"
+    "greeting": "azure lime",
+    "host": "azure",
+    "environment": "lime"
   }
 }
