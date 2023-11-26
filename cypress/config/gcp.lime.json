@@ -1,5 +1,5 @@
 {
-  "baseUrl": "https://cloud.google.com/",
+  "baseUrl": "https://duckduckgo.com",
   "env": {
     "greeting": "gcp lime",
     "host": "gcp",

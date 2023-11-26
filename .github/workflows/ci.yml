@@ -1,0 +1,28 @@
+name: Chrome
+on:
+  workflow_dispatch:
+    inputs:
+      choice:
+        type: choice
+        description: "--env configFile="
+        required: true
+        default: "duck.demo"
+        options:
+          - "azure.lime"
+          - "gcp.lime"
+          - "host.env"
+
+jobs:
+  chrome:
+    runs-on: ubuntu-22.04
+    name: E2E on Chrome
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: greet
+        run: |
+          echo "configFile is ${{ github.event.inputs.choice}}"
+
+      - uses: cypress-io/github-action@v6
+        with:
+          browser: chrome

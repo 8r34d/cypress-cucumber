@@ -16,8 +16,6 @@ async function setupNodeEvents(
   on: Cypress.PluginEvents,
   config: Cypress.PluginConfigOptions
 ): Promise<Cypress.PluginConfigOptions> {
-  // --env configFile=<filename>
-  // filename : duck.demo | azure.lime | gcp.lime | host.env
   const configFile = config.env.configFile || "duck.demo";
   const settings = await getConfigurationByFile(configFile);
   config = {
