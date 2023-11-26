@@ -30,6 +30,7 @@ jobs:
           browser: chrome
         env:
           CYPRESS_configFile: ${{ github.event.inputs.config-file }}
+          DEBUG: "cypress:*"
 
       - name: Cypress screenshots on failure
         uses: actions/upload-artifact@v3
