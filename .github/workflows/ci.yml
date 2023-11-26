@@ -30,8 +30,8 @@ jobs:
           browser: chrome
           env: configFile=${{ github.event.inputs.config-file }}
         env:
-          CYPRESS_MY_SECRET_USER: ""
-          CYPRESS_MY_SECRET_PASSWORD: ""
+          CYPRESS_MY_SECRET_USER: ${{ secrets.MY_SECRET_USER }}
+          CYPRESS_MY_SECRET_PASSWORD: ${{ secrets.MY_SECRET_PASSWORD }}
 
       - name: Cypress screenshots on failure
         uses: actions/upload-artifact@v3
