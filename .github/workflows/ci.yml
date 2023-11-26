@@ -2,12 +2,13 @@ name: Chrome
 on:
   workflow_dispatch:
     inputs:
-      choice:
+      config-file:
         type: choice
         description: "--env configFile="
         required: true
         default: "duck.demo"
         options:
+          - "duck.demo (default)"
           - "azure.lime"
           - "gcp.lime"
           - "host.env"
@@ -22,27 +23,25 @@ jobs:
 
       - name: greet
         run: |
-          echo 'configFile is ${{ github.event.inputs.choice || 'duck.demo'}}'
+          echo 'configFile is ${{ github.event.inputs.config-file }}'
 
       - name: Cypress run with env
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
         env:
-          CYPRESS_configFile: ${{ github.event.inputs.choice || 'duck.demo' }}
+          CYPRESS_configFile: ${{ github.event.inputs.config-file }}
 
       - name: Cypress screenshots on failure
         uses: actions/upload-artifact@v3
-        # add the line below to store screenshots only on failures
-        # if: failure()
+        if: failure()
         with:
           name: cypress-screenshots
           path: cypress/screenshots
-          if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
-
+          if-no-files-found: ignore
       - name: Cypress videos
         uses: actions/upload-artifact@v3
         with:
           name: cypress-videos
           path: cypress/videos
-          if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
+          if-no-files-found: ignore

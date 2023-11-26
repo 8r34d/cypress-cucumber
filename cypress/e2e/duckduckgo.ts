@@ -19,4 +19,8 @@ Then("I should see a search bar", () => {
   cy.log("greeting", Cypress.env("greeting"));
   cy.log("host", Cypress.env("host"));
   cy.log("environment", Cypress.env("environment"));
+
+  console.log("greeting", Cypress.env("greeting"));
+  console.log("host", Cypress.env("host"));
+  console.log("environment", Cypress.env("environment"));
 });
