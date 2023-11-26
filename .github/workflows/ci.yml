@@ -28,9 +28,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
-        env:
-          CYPRESS_configFile: ${{ github.event.inputs.config-file }}
-          DEBUG: "cypress:*"
+          env: configFile=${{ github.event.inputs.config-file }}
 
       - name: Cypress screenshots on failure
         uses: actions/upload-artifact@v3
