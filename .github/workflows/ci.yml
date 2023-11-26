@@ -11,18 +11,23 @@ on:
           - "azure.lime"
           - "gcp.lime"
           - "host.env"
+  push:
 
 jobs:
   chrome:
     runs-on: ubuntu-22.04
     name: E2E on Chrome
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: greet
         run: |
-          echo "configFile is ${{ github.event.inputs.choice}}"
+          echo 'configFile is ${{ github.event.inputs.choice}}'
 
-      - uses: cypress-io/github-action@v6
+      - name: Cypress run with env
+        uses: cypress-io/github-action@v6
         with:
           browser: chrome
+        env:
+          CYPRESS_configFile: ${{ github.event.inputs.choice || 'duck.demo' }}
