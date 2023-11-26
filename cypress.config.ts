@@ -1,29 +1,44 @@
 import { defineConfig } from "cypress";
 import createBundler from "@bahmutov/cypress-esbuild-preprocessor";
 import { addCucumberPreprocessorPlugin } from "@badeball/cypress-cucumber-preprocessor";
-// @ts-ignore
-import createEsbuildPlugin from "@badeball/cypress-cucumber-preprocessor/esbuild";
+import { createEsbuildPlugin } from "@badeball/cypress-cucumber-preprocessor/esbuild";
+
+import fs from "fs-extra";
+import path from "path";
+
+function getConfigurationByFile(file: string) {
+  const pathToConfigFile = path.resolve("cypress", "config", `${file}.json`);
+
+  return fs.readJson(pathToConfigFile);
+}
+
+async function setupNodeEvents(
+  on: Cypress.PluginEvents,
+  config: Cypress.PluginConfigOptions
+): Promise<Cypress.PluginConfigOptions> {
+  const configFile = config.env.configFile || "duck.demo";
+  const settings = await getConfigurationByFile(configFile);
+  config = {
+    ...config,
+    ...settings,
+  };
+
+  await addCucumberPreprocessorPlugin(on, config);
+
+  on(
+    "file:preprocessor",
+    createBundler({
+      plugins: [createEsbuildPlugin(config)],
+    })
+  );
+
+  return config;
+}
 
 export default defineConfig({
   e2e: {
-    baseUrl: "https://limebread.co.uk",
     specPattern: "**/*.feature",
-    async setupNodeEvents(
-      on: Cypress.PluginEvents,
-      config: Cypress.PluginConfigOptions
-    ): Promise<Cypress.PluginConfigOptions> {
-      // This is required for the preprocessor to be able to generate JSON reports after each run, and more,
-      await addCucumberPreprocessorPlugin(on, config);
-
-      on(
-        "file:preprocessor",
-        createBundler({
-          plugins: [createEsbuildPlugin(config)],
-        })
-      );
-
-      // Make sure to return the config object as it might have been modified by the plugin.
-      return config;
-    },
+    video: true,
+    setupNodeEvents,
   },
 });

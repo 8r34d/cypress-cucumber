@@ -1,0 +1,8 @@
+{
+  "baseUrl": "https://duckduckgo.com",
+  "env": {
+    "greeting": "gcp lime",
+    "host": "gcp",
+    "environment": "lime"
+  }
+}

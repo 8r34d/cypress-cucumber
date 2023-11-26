@@ -1,0 +1,8 @@
+{
+  "baseUrl": "https://duckduckgo.com",
+  "env": {
+    "greeting": "azure lime",
+    "host": "azure",
+    "environment": "lime"
+  }
+}
