@@ -23,7 +23,7 @@ jobs:
 
       - name: greet
         run: |
-          echo 'configFile is ${{ github.event.inputs.choice}}'
+          echo 'configFile is ${{ github.event.inputs.choice || 'duck.demo'}}'
 
       - name: Cypress run with env
         uses: cypress-io/github-action@v6
