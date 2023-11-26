@@ -6,9 +6,8 @@ on:
         type: choice
         description: "--env configFile="
         required: true
-        default: "duck.demo"
         options:
-          - "duck.demo (default)"
+          - "duck.demo"
           - "azure.lime"
           - "gcp.lime"
           - "host.env"
